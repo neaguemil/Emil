@@ -6,12 +6,20 @@ public class ControlDepou {
 public static	Scanner scan = new Scanner(System.in);
 	public static void main(String[] args) {
 		
-		Locomotiva lc = new Locomotiva(1,50);
-		VagonMarfa vm = new VagonMarfa(2, 90);
-		VagonPasager vp = new VagonPasager(3, 55);
+		ArataTren at = new ArataTren();
+		FormareTren ft = new FormareTren();
+		AdaugaVagonPasageri avp = new AdaugaVagonPasageri();
+		AdaugaVagonMarfa avm = new AdaugaVagonMarfa();
+		AdaugaLocomotiva alc = new AdaugaLocomotiva();
+//		Locomotiva lc = new Locomotiva(1,50);
+//		VagonMarfa vm = new VagonMarfa(2, 90);
+//		VagonPasager vp = new VagonPasager(3, 55);
 //		System.out.println("Locomotiva\nID: " + lc.getID() + "\nViteza maxima permisa: " + lc.maxSpeed);
 //		System.out.println("Vagon Marfa \nID: " + vm.getID() + "\nGreutate: " + vm.getGreutate());
 //		System.out.println("Vagon Pasager \nID: " + vp.getID() + " \nNr. maxime de locuri : " + vp.getNrMaxPasageri(4) + " \nGreutate: " + vp.getGreutate() + "tone");
+		
+		Depou[] DepouList = new Depou[100];
+		int stored ;
 		
 		
 		try {
@@ -25,24 +33,21 @@ public static	Scanner scan = new Scanner(System.in);
                 switch (menuOption) {
 
                 case 1:
-                	addLocomotiva();
+                	alc.addLocomotiva();
                     break;
                 case 2:
-                   addVagonMarfa();
+                  avm.addVagonMarfa();
                     break;
                 case 3:
-                   addVagonPasageri();
+                 avp.addVagonPasageri();
                     break;
                 case 4:
-                    makeTrain();
+                    ft.makeTrain();
                     break;
                 case 5:
-                	addVagon();
-                    break;
-                case 6:
-                	showTrains();
+                	at.showTrains();
                 	break;
-                case 7:
+                case 6:
                 	System.out.println("Quitting Program...");
                 	break;
                 default:
@@ -50,7 +55,7 @@ public static	Scanner scan = new Scanner(System.in);
 
                 }// End of switch statement
 
-            } while (menuOption != 7);
+            } while (menuOption != 6);
 
             // mesaj de quit :D
             System.out.println("Thanks for using this Program...");
@@ -67,30 +72,8 @@ public static	Scanner scan = new Scanner(System.in);
         }
 
     }// End of main Method
-		 private static void showTrains() {
+
 		
-		
-	}
-		private static void addVagon() {
-		// TODO Auto-generated method stub
-		
-	}
-		private static void makeTrain() {
-		// TODO Auto-generated method stub
-		
-	}
-		private static void addVagonPasageri() {
-		// TODO Auto-generated method stub
-		
-	}
-		private static void addVagonMarfa() {
-		// TODO Auto-generated method stub
-		
-	}
-		private static void addLocomotiva() {
-		// TODO Auto-generated method stub
-		
-	}
 		public static int showMenu() {
 
 		        
@@ -102,9 +85,8 @@ public static	Scanner scan = new Scanner(System.in);
 		        System.out.println("2.addVagonMarfa");
 		        System.out.println("3.addVagonPasageri");
 		        System.out.println("4.makeTrain");
-		        System.out.println("5.addVagon");
-		        System.out.println("6.showTrains");
-		        System.out.println("7.quit");
+		        System.out.println("5.showTrains");
+		        System.out.println("6.quit");
 
 		        // primire optiune de la client
 		        System.out.println("Enter Option from above...");

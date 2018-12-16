@@ -17,6 +17,10 @@ public class Locomotiva implements Depou {
 	public int getID() {
 		return ID;
 	}	
+	public int addLocomotiva() {
+		return ID;
+		
+	}
 	}
 
 
