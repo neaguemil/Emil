@@ -2,6 +2,8 @@ package project.foodorder.actions;
 
 import project.core.keyboard.Keyboard;
 import project.core.menu.MenuItem;
+import project.foodorder.AplicationSession;
+import project.foodorder.model.ReadingUser;
 
 public class AddUserAction extends MenuItem {
 	private Keyboard keyboard = Keyboard.getInstance();
@@ -9,15 +11,20 @@ public class AddUserAction extends MenuItem {
 	public AddUserAction() {
 		super("1", "Add");
 	}
+	
+	
 
 	@Override
 	public void doAction() {
-		System.out.println("add user Action....");
-//		int year = keyboard.getInt("Year: ");
-//		int month = keyboard.getInt("Month: ");
-//		int coldWater = keyboard.getInt("Cold water: ");
-//		int hotWater = keyboard.getInt("Hot water: ");
-		// do something with values
+	
+		String name = keyboard.getString("New User Name: ");
+		
+		
+	
+		
+		ReadingUser readuser = new ReadingUser(name);
+		AplicationSession.getInstance().getDataBase().addUser(readuser);
+
 	}
 
 }

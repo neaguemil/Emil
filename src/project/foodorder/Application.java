@@ -1,24 +1,41 @@
 package project.foodorder;
 
 import project.core.menu.BackAction;
+
 import project.core.menu.DeleteAction;
 import project.core.menu.Menu;
 import project.core.menu.MenuItem;
 import project.foodorder.actions.AddOptionAction;
 import project.foodorder.actions.AddOrderAction;
 import project.foodorder.actions.AddUserAction;
-import project.foodorder.actions.LeftToPay;
+import project.foodorder.actions.EditOrderOptionAction;
+import project.foodorder.actions.EditUserAction;
+import project.foodorder.actions.LeftToPayAction;
 import project.foodorder.actions.PaymentStatsAction;
+import project.foodorder.actions.ViewOrderOptionAction;
+import project.foodorder.actions.ViewUserAction;
+import project.foodorder.model.DataBase;
+import project.foodorder.utils.Serializer;
 
-
-
-public class Application {
+public class Application  {
 	public static void main(String[] args) {
 		Application app = new Application();
 		app.run();
 	}
+	
+	private void init() {
+		DataBase database = AplicationSession.getInstance().getDataBase();
+		
+	}
 
 	private void run() {
+		Serializer serializer = AplicationSession.getInstance().getSerialize();
+		DataBase database = serializer.load();
+		if (database == null) {
+			return;
+		}
+		AplicationSession.getInstance().setDataBase(database);
+
 		MenuItem mainMenu = createMenu();
 		mainMenu.doAction();
 	}
@@ -28,22 +45,30 @@ public class Application {
 		MenuItem addOption = new AddOptionAction();
 		MenuItem addOrder = new AddOrderAction();
 		MenuItem payStatus = new PaymentStatsAction();
-		MenuItem leftToPay = new LeftToPay();
+		MenuItem leftToPay = new LeftToPayAction();
+		MenuItem viewuser = new ViewUserAction();
+		MenuItem editUser = new EditUserAction();
+		MenuItem editorderoption = new EditOrderOptionAction();
+		MenuItem viewoption = new ViewOrderOptionAction();
 		
 
 		BackAction back = new BackAction("0", "Back");
 		BackAction exit = new BackAction("0", "Exit");
 		DeleteAction delete = new DeleteAction("2", "Delete");
 
-		Menu usersMenu = new Menu("1", "Users Panel");
-		usersMenu.addItem(addUser);
-		usersMenu.addItem(delete);
-		usersMenu.addItem(back);
-		usersMenu.setBackAction(back);
+		Menu userMenu = new Menu("1", "Users Panel");
+		userMenu.addItem(addUser);
+		userMenu.addItem(delete);
+		userMenu.addItem(viewuser);
+		userMenu.addItem(editUser);
+		userMenu.addItem(back);
+		userMenu.setBackAction(back);
 
 		Menu optionsMenu = new Menu("2", "Options Management");
 		optionsMenu.addItem(addOption);
 		optionsMenu.addItem(delete);
+		optionsMenu.addItem(viewoption);
+		optionsMenu.addItem(editorderoption);
 		optionsMenu.addItem(back);
 		optionsMenu.setBackAction(back);
 		
@@ -57,7 +82,7 @@ public class Application {
 		
 
 		Menu mainMenu = new Menu("", "Main");
-		mainMenu.addItem(usersMenu);
+		mainMenu.addItem(userMenu);
 		mainMenu.addItem(optionsMenu);
 		mainMenu.addItem(orderMenu);
 		mainMenu.addItem(exit);

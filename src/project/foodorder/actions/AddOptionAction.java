@@ -1,7 +1,8 @@
 package project.foodorder.actions;
-
 import project.core.keyboard.Keyboard;
 import project.core.menu.MenuItem;
+import project.foodorder.AplicationSession;
+import project.foodorder.model.ReadingAvailableOption;
 
 public class AddOptionAction extends MenuItem {
 	private Keyboard keyboard = Keyboard.getInstance();
@@ -13,7 +14,13 @@ public class AddOptionAction extends MenuItem {
 
 	@Override
 	public void doAction() {
-		System.out.println("add option...");		
+		String ID = keyboard.getString("ID: ");
+		String details = keyboard.getString("Details: ");	
+		int price = keyboard.getInt("Price: ");
+		
+		
+		ReadingAvailableOption readoption = new ReadingAvailableOption(ID, price, details);
+		AplicationSession.getInstance().getDataBase().addOption(readoption);
 	}
 
 }
