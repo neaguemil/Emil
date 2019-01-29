@@ -11,20 +11,12 @@ public class AddUserAction extends MenuItem {
 	public AddUserAction() {
 		super("1", "Add User");
 	}
-	
-	
 
 	@Override
 	public void doAction() {
-	
 		String name = keyboard.getString("New User Name: ");
-		
-		
-	
-		
 		ReadingUser readuser = new ReadingUser(name);
 		AplicationSession.getInstance().getDataBase().addUser(readuser);
-
 	}
 
 }

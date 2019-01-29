@@ -1,41 +1,36 @@
 package project.foodorder.model;
+
 import java.io.Serializable;
-
-
-
 import java.util.ArrayList;
 import java.util.List;
 
 import project.foodorder.AplicationSession;
-import project.foodorder.actions.DeleteUserAction;
 import project.foodorder.utils.Serializer;
-
-
-
 
 public class FileDataBase implements DataBase, Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	private List<ReadingUser> readusers = new ArrayList<ReadingUser>();
 
 	@Override
 	public List<ReadingUser> getUserReadings() {
 		return readusers;
 	}
+
 	@Override
 	public void addUser(ReadingUser readuser) {
 		readusers.add(readuser);
 		Serializer serializer = AplicationSession.getInstance().getSerialize();
 		serializer.save(this);
 	}
-	
+
 	@Override
 	public ReadingUser getReadingByName(String name) {
-		for ( ReadingUser readuser : readusers) {
-			if(readuser.hasName(name)) {
+		for (ReadingUser readuser : readusers) {
+			if (readuser.hasName(name)) {
 				return readuser;
 			}
-		}		
+		}
 		return null;
 	}
 
@@ -43,29 +38,28 @@ public class FileDataBase implements DataBase, Serializable {
 	public void editReadingUser(String name) {
 		ReadingUser readuser = getReadingByName(name);
 		readuser.edit(name);
-		Serializer serializer =  AplicationSession.getInstance().getSerialize();
+		Serializer serializer = AplicationSession.getInstance().getSerialize();
 		serializer.save(this);
 	}
-	
-	
-	private List<ReadingAvailableOption> readoptions = new ArrayList<ReadingAvailableOption>();
-	@Override
-	public List<ReadingAvailableOption> getOptionReadings() {
-		return readoptions;
-	}
-	
+
+	private List<ReadingAvailableOption> options = new ArrayList<ReadingAvailableOption>();
 
 	@Override
-	public void addOption(ReadingAvailableOption readoption) {
-		
+	public List<ReadingAvailableOption> getOptionReadings() {
+		return options;
+	}
+
+	@Override
+	public void addOption(ReadingAvailableOption option) {
+		options.add(option);
 		Serializer serializer = AplicationSession.getInstance().getSerialize();
-		serializer.save(this);		
+		serializer.save(this);
 	}
 
 	@Override
 	public ReadingAvailableOption getReadingByOptionID(int ID) {
-		for (ReadingAvailableOption readoption : readoptions) {
-			if(readoption.hasID(ID)) {
+		for (ReadingAvailableOption readoption : options) {
+			if (readoption.hasID(ID)) {
 				return readoption;
 			}
 		}
@@ -80,22 +74,13 @@ public class FileDataBase implements DataBase, Serializable {
 		Serializer serializer = AplicationSession.getInstance().getSerialize();
 		serializer.save(this);
 	}
+
 	@Override
 	public void deleteReadingUser(String deletename) {
 		ReadingUser readuser = getReadingByName(deletename);
 		deletename.replace(deletename, " ");
-		Serializer serializer =  AplicationSession.getInstance().getSerialize();
+		Serializer serializer = AplicationSession.getInstance().getSerialize();
 		serializer.save(this);
 	}
-	
-	}
 
-	
-
-
-
-
-
-	
-
-
+}
