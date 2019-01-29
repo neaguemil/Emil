@@ -2,12 +2,14 @@ package project.foodorder;
 
 import project.core.menu.BackAction;
 
+
 import project.core.menu.DeleteAction;
 import project.core.menu.Menu;
 import project.core.menu.MenuItem;
 import project.foodorder.actions.AddOptionAction;
 import project.foodorder.actions.AddOrderAction;
 import project.foodorder.actions.AddUserAction;
+import project.foodorder.actions.DeleteUserAction;
 import project.foodorder.actions.EditOrderOptionAction;
 import project.foodorder.actions.EditUserAction;
 import project.foodorder.actions.LeftToPayAction;
@@ -15,7 +17,9 @@ import project.foodorder.actions.PaymentStatsAction;
 import project.foodorder.actions.ViewOrderOptionAction;
 import project.foodorder.actions.ViewUserAction;
 import project.foodorder.model.DataBase;
+import project.foodorder.model.ReadingUser;
 import project.foodorder.utils.Serializer;
+
 
 public class Application  {
 	public static void main(String[] args) {
@@ -25,7 +29,8 @@ public class Application  {
 	
 	private void init() {
 		DataBase database = AplicationSession.getInstance().getDataBase();
-		
+		database.addUser(new ReadingUser("Andrei"));
+		database.addUser(new ReadingUser("Alex"));
 	}
 
 	private void run() {
@@ -50,6 +55,7 @@ public class Application  {
 		MenuItem editUser = new EditUserAction();
 		MenuItem editorderoption = new EditOrderOptionAction();
 		MenuItem viewoption = new ViewOrderOptionAction();
+		MenuItem deleteuser = new DeleteUserAction();
 		
 
 		BackAction back = new BackAction("0", "Back");
@@ -58,7 +64,7 @@ public class Application  {
 
 		Menu userMenu = new Menu("1", "Users Panel");
 		userMenu.addItem(addUser);
-		userMenu.addItem(delete);
+		userMenu.addItem(deleteuser);
 		userMenu.addItem(viewuser);
 		userMenu.addItem(editUser);
 		userMenu.addItem(back);

@@ -9,7 +9,7 @@ public class AddUserAction extends MenuItem {
 	private Keyboard keyboard = Keyboard.getInstance();
 
 	public AddUserAction() {
-		super("1", "Add");
+		super("1", "Add User");
 	}
 	
 	

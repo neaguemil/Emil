@@ -13,8 +13,8 @@ public class ViewOrderOptionAction extends MenuItem{
 	
 	public void doAction() {
 		DataBase database = AplicationSession.getInstance().getDataBase();
-		for(ReadingAvailableOption reading : database.getOptionReadings()) {
-			System.out.println(reading);
+		for(ReadingAvailableOption readingoption : database.getOptionReadings()) {
+			System.out.println(readingoption);
 		}
 	}
 

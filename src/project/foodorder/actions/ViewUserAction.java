@@ -10,14 +10,14 @@ import project.foodorder.model.ReadingUser;
 public class ViewUserAction extends MenuItem {
 
 	public ViewUserAction() {
-		super("3", "View User: ");
+		super("3", "View User ");
 	}
 
 	@Override
 	public void doAction() {
 		DataBase database = AplicationSession.getInstance().getDataBase();
-		for (ReadingUser reading : database.getUserReadings()) {
-			System.out.println(reading);
+		for (ReadingUser readinguser : database.getUserReadings()) {
+			System.out.println(readinguser);
 		
 	}
 	}	

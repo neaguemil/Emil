@@ -14,7 +14,7 @@ public class AddOptionAction extends MenuItem {
 
 	@Override
 	public void doAction() {
-		String ID = keyboard.getString("ID: ");
+		int ID = keyboard.getInt("ID: ");
 		String details = keyboard.getString("Details: ");	
 		int price = keyboard.getInt("Price: ");
 		

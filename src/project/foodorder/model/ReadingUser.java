@@ -7,23 +7,32 @@ public class ReadingUser implements Serializable {
 
 	private String name;
 	
+	
+	
 
 	public ReadingUser(String name) {
 		this.name = name;
 	}
 
 	public boolean hasName(String name2) {
-		return name == name2 ;
+		return name.equals(name2) ;
 	}
 
 	public void edit(String name2) {
 		name = name2;
 	}
 
+	public void replace(String name, String name2) {
+		name.replace(name, " ");
+		
+		
+	}
+	
 	@Override
 	public String toString() {
 		return "User: " + name;
 	}
+
 
 
 	
