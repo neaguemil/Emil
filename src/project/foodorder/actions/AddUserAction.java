@@ -3,7 +3,7 @@ package project.foodorder.actions;
 import project.core.keyboard.Keyboard;
 import project.core.menu.MenuItem;
 import project.foodorder.AplicationSession;
-import project.foodorder.model.ReadingUser;
+import project.foodorder.model.User;
 
 public class AddUserAction extends MenuItem {
 	private Keyboard keyboard = Keyboard.getInstance();
@@ -15,7 +15,7 @@ public class AddUserAction extends MenuItem {
 	@Override
 	public void doAction() {
 		String name = keyboard.getString("New User Name: ");
-		ReadingUser readuser = new ReadingUser(name);
+		User readuser = new User(name);
 		AplicationSession.getInstance().getDataBase().addUser(readuser);
 	}
 

@@ -4,7 +4,7 @@ import project.core.keyboard.Keyboard;
 import project.core.menu.MenuItem;
 import project.foodorder.AplicationSession;
 import project.foodorder.model.DataBase;
-import project.foodorder.model.ReadingAvailableOption;
+import project.foodorder.model.AvailableOption;
 
 public class EditOrderOptionAction extends MenuItem {
 	
@@ -16,14 +16,14 @@ public class EditOrderOptionAction extends MenuItem {
 	
 	public void doAction() {
 		DataBase db = AplicationSession.getInstance().getDataBase();
-		int ID = keyboard.getInt("ID: ");
-		ReadingAvailableOption readoption = db.getReadingByOptionID(ID);
+		String id = keyboard.getString("ID: ");
+		AvailableOption readoption = db.getReadingByOptionID(id);
 		if(readoption == null) {
 			System.out.println("Order Option does not exist !!");
 			return;
 		}
 		 String details = keyboard.getString("New Details: ");
 		 double price = keyboard.getInt("New Price: ");
-		 db.editReadingOrderOption(ID, details, price);
+		 db.editOrderOption(id, details, price);
 	}
 }

@@ -1,6 +1,7 @@
 package project.core.keyboard;
 
 import java.text.ParseException;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
@@ -27,6 +28,7 @@ public class Keyboard {
 		return value;
 	}
 	
+	
 	public String getString(String message) {
 		System.out.print(message);
 		String value = kb.nextLine();
@@ -36,7 +38,7 @@ public class Keyboard {
 	SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
 	
 	public Date getDate(String message) {
-		while(true) {
+		while (true) {
 			try {
 				System.out.print(message + "[" + DATE_FORMAT + "]");
 				String text = kb.nextLine();
@@ -46,9 +48,16 @@ public class Keyboard {
 			}
 		}
 	}
+
 	public boolean getBoolean(String message) {
 		System.out.println(message);
 		boolean value = kb.hasNext(message);
+		return value;
+	}
+	
+	public double getDouble(String message) {
+		System.out.println(message);
+		double value = kb.nextDouble();
 		return value;
 	}
 

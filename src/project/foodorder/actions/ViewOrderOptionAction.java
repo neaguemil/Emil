@@ -3,7 +3,7 @@ package project.foodorder.actions;
 import project.core.menu.MenuItem;
 import project.foodorder.AplicationSession;
 import project.foodorder.model.DataBase;
-import project.foodorder.model.ReadingAvailableOption;
+import project.foodorder.model.AvailableOption;
 
 public class ViewOrderOptionAction extends MenuItem{
 	
@@ -13,8 +13,10 @@ public class ViewOrderOptionAction extends MenuItem{
 	
 	public void doAction() {
 		DataBase database = AplicationSession.getInstance().getDataBase();
-		for(ReadingAvailableOption readingoption : database.getOptionReadings()) {
-			System.out.println(readingoption);
+		for(AvailableOption option : database.getOption()) {
+			System.out.println("------------------------------------------------------------------------------------------------------------");
+			System.out.println(option);
+			System.out.println("-------------------------------------------------------------------------------------------------------------");
 		}
 	}
 

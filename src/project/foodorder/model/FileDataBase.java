@@ -2,6 +2,7 @@ package project.foodorder.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import project.foodorder.AplicationSession;
@@ -10,57 +11,58 @@ import project.foodorder.utils.Serializer;
 public class FileDataBase implements DataBase, Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private List<ReadingUser> readusers = new ArrayList<ReadingUser>();
+	private List<User> users = new ArrayList<User>();
 
 	@Override
-	public List<ReadingUser> getUserReadings() {
-		return readusers;
+	public List<User> getUser() {
+		return users;
 	}
 
 	@Override
-	public void addUser(ReadingUser readuser) {
-		readusers.add(readuser);
+	public void addUser(User user) {
+		users.add(user);
 		Serializer serializer = AplicationSession.getInstance().getSerialize();
 		serializer.save(this);
 	}
 
 	@Override
-	public ReadingUser getReadingByName(String name) {
-		for (ReadingUser readuser : readusers) {
-			if (readuser.hasName(name)) {
-				return readuser;
+	public User getReadingByName(String name) {
+		for (User user : users) {
+			if (user.hasName(name)) {
+				return user;
 			}
 		}
 		return null;
 	}
 
 	@Override
-	public void editReadingUser(String name) {
-		ReadingUser readuser = getReadingByName(name);
-		readuser.edit(name);
+	public void editUser(String newname, String name) {
+		User user = getReadingByName(name);	
+		user.edit(name);
 		Serializer serializer = AplicationSession.getInstance().getSerialize();
 		serializer.save(this);
+		
 	}
 
-	private List<ReadingAvailableOption> options = new ArrayList<ReadingAvailableOption>();
+	private List<AvailableOption> options = new ArrayList<AvailableOption>();
 
 	@Override
-	public List<ReadingAvailableOption> getOptionReadings() {
+	public List<AvailableOption> getOption() {
 		return options;
 	}
 
 	@Override
-	public void addOption(ReadingAvailableOption option) {
+	public void addOption(AvailableOption option) {
 		options.add(option);
 		Serializer serializer = AplicationSession.getInstance().getSerialize();
 		serializer.save(this);
 	}
 
 	@Override
-	public ReadingAvailableOption getReadingByOptionID(int ID) {
-		for (ReadingAvailableOption readoption : options) {
-			if (readoption.hasID(ID)) {
-				return readoption;
+	public AvailableOption getReadingByOptionID(String id) {
+		for (AvailableOption option : options) {
+			if (option.hasID(id)) {
+				return option;
 			}
 		}
 		return null;
@@ -68,19 +70,64 @@ public class FileDataBase implements DataBase, Serializable {
 	}
 
 	@Override
-	public void editReadingOrderOption(int ID, String details, double price) {
-		ReadingAvailableOption readoption = getReadingByOptionID(ID);
-		readoption.edit(price, details);
+	public void editOrderOption(String id, String details, double price) {
+		AvailableOption option = getReadingByOptionID(id);
+		option.edit(price, details);
 		Serializer serializer = AplicationSession.getInstance().getSerialize();
 		serializer.save(this);
 	}
 
 	@Override
-	public void deleteReadingUser(String deletename) {
-		ReadingUser readuser = getReadingByName(deletename);
-		deletename.replace(deletename, " ");
+	public void deleteUser(String name) {
+		Iterator<User> iterator = users.iterator();
+		while (iterator.hasNext()) {
+			User user = iterator.next();
+			if (user.hasName(name)) {
+				iterator.remove();
+			}
+		}
+
 		Serializer serializer = AplicationSession.getInstance().getSerialize();
 		serializer.save(this);
 	}
 
+	@Override
+	public void deleteOption(String id) {
+		Iterator<AvailableOption> iterator = options.iterator();
+		while(iterator.hasNext()) {
+			AvailableOption option = iterator.next();
+			if(option.hasID(id)) {
+				iterator.remove();
+			}
+		}
+		Serializer serializer = AplicationSession.getInstance().getSerialize();
+		serializer.save(this);
+		
+	}
+	
+	private List<Order> orders = new ArrayList<Order>();
+
+	@Override
+	public List<Order> getOrder() {
+		return orders;
+	}
+
+	@Override
+	public void deleteOrder(User user) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void editOrder(User user, AvailableOption option) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addOrder(Order order) {
+		orders.add(order);
+		Serializer serializer = AplicationSession.getInstance().getSerialize();
+		serializer.save(this);		
+	}
 }

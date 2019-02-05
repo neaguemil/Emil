@@ -4,21 +4,38 @@ package project.foodorder.model;
 import java.util.List;
 
 public interface DataBase {
-	List<ReadingUser> getUserReadings();
+	List<User> getUser();
 	
-	void addUser(ReadingUser reading);
-	ReadingUser getReadingByName(String name);
-	void editReadingUser(String name);
-	void deleteReadingUser(String deletename);
-	
-	
+	void addUser(User user);
+	User getReadingByName(String name);
+	void editUser(String name, String newname);
+	void deleteUser(String name);
 	
 	
-	List<ReadingAvailableOption> getOptionReadings();
 	
-	void addOption(ReadingAvailableOption readoption);
-	ReadingAvailableOption getReadingByOptionID(int ID);
-	void editReadingOrderOption(int ID, String details, double price);
+	
+	List<AvailableOption> getOption();
+	
+	void addOption(AvailableOption option);
+	AvailableOption getReadingByOptionID(String id);
+	void editOrderOption(String id, String details, double price);
+	void deleteOption(String id);
+
+	
+	
+	
+	List<Order> getOrder();
+
+	
+//	void addOrder(User user, AvailableOption option);
+	void deleteOrder(User user);
+	void editOrder(User user, AvailableOption option);
+	void addOrder(Order order);
+
+
+	
+
+
 
 	
 	
