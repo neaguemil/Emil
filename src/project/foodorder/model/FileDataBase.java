@@ -37,11 +37,11 @@ public class FileDataBase implements DataBase, Serializable {
 
 	@Override
 	public void editUser(String newname, String name) {
-		User user = getReadingByName(name);	
-		user.edit(name);
+		User user = getReadingByName(name);
+		user.edit(newname);
 		Serializer serializer = AplicationSession.getInstance().getSerialize();
 		serializer.save(this);
-		
+
 	}
 
 	private List<AvailableOption> options = new ArrayList<AvailableOption>();
@@ -94,17 +94,17 @@ public class FileDataBase implements DataBase, Serializable {
 	@Override
 	public void deleteOption(String id) {
 		Iterator<AvailableOption> iterator = options.iterator();
-		while(iterator.hasNext()) {
+		while (iterator.hasNext()) {
 			AvailableOption option = iterator.next();
-			if(option.hasID(id)) {
+			if (option.hasID(id)) {
 				iterator.remove();
 			}
 		}
 		Serializer serializer = AplicationSession.getInstance().getSerialize();
 		serializer.save(this);
-		
+
 	}
-	
+
 	private List<Order> orders = new ArrayList<Order>();
 
 	@Override
@@ -115,19 +115,19 @@ public class FileDataBase implements DataBase, Serializable {
 	@Override
 	public void deleteOrder(User user) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void editOrder(User user, AvailableOption option) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void addOrder(Order order) {
 		orders.add(order);
 		Serializer serializer = AplicationSession.getInstance().getSerialize();
-		serializer.save(this);		
+		serializer.save(this);
 	}
 }
