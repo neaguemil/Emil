@@ -4,6 +4,7 @@ package project.foodorder.model;
 import java.util.List;
 
 public interface DataBase {
+	
 	List<User> getUser();
 	
 	void addUser(User user);
@@ -25,12 +26,13 @@ public interface DataBase {
 	
 	
 	List<Order> getOrder();
-
 	
-//	void addOrder(User user, AvailableOption option);
-	void deleteOrder(User user);
-	void editOrder(User user, AvailableOption option);
+	void deleteOrder(String name);
 	void addOrder(Order order);
+	Order getOrderByName(String name); 
+	void editOrderStatus(String orderName, boolean status, double money);
+
+
 
 
 	

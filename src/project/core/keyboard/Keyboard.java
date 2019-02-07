@@ -50,6 +50,7 @@ public class Keyboard {
 	public boolean getBoolean(String message) {
 		System.out.println(message);
 		boolean value = kb.hasNext(message);
+		kb.nextLine();
 		return value;
 	}
 

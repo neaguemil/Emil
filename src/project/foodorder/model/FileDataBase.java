@@ -113,21 +113,42 @@ public class FileDataBase implements DataBase, Serializable {
 	}
 
 	@Override
-	public void deleteOrder(User user) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void editOrder(User user, AvailableOption option) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
 	public void addOrder(Order order) {
 		orders.add(order);
 		Serializer serializer = AplicationSession.getInstance().getSerialize();
 		serializer.save(this);
 	}
+
+	@Override
+	public Order getOrderByName(String name) {
+		for (Order order : orders) {
+			if (order.hasOrderName(name)) {
+				return order;
+			}
+	}
+		return null;
+	}
+
+	@Override
+	public void deleteOrder(String name) {
+		Iterator<Order> iterator = orders.iterator();
+		while (iterator.hasNext()) {
+			Order order = iterator.next();
+			if (order.hasOrderName(name)) {
+				iterator.remove();
+			}
+		
+	}
+	}
+
+	@Override
+	public void editOrderStatus(String orderName, boolean status, double money) {
+		Order order = getOrderByName(orderName);
+		order.edit(status, money);
+		Serializer serializer = AplicationSession.getInstance().getSerialize();
+		serializer.save(this);
+		
+		
+	}
+
 }

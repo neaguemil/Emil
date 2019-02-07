@@ -21,6 +21,7 @@ public class AddOptionAction extends MenuItem {
 		String details = keyboard.getString("Details: ");
 		double price = keyboard.getDouble("Price: ");
 
+
 		AvailableOption option = new AvailableOption(id, price, details, data);
 		AplicationSession.getInstance().getDataBase().addOption(option);
 	}

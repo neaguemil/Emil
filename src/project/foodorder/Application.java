@@ -16,7 +16,8 @@ import project.foodorder.actions.DeleteUserAction;
 import project.foodorder.actions.EditOrderOptionAction;
 import project.foodorder.actions.EditUserAction;
 import project.foodorder.actions.LeftToPayAction;
-import project.foodorder.actions.PaymentStatsAction;
+import project.foodorder.actions.EditPaymentStatusAction;
+import project.foodorder.actions.ViewOrderAction;
 import project.foodorder.actions.ViewOrderOptionAction;
 import project.foodorder.actions.ViewUserAction;
 import project.foodorder.model.DataBase;
@@ -51,7 +52,7 @@ public class Application  {
 		MenuItem addUser = new AddUserAction();
 		MenuItem addOption = new AddOptionAction();
 		MenuItem addOrder = new AddOrderAction();
-		MenuItem payStatus = new PaymentStatsAction();
+		MenuItem payStatus = new EditPaymentStatusAction();
 		MenuItem leftToPay = new LeftToPayAction();
 		MenuItem viewuser = new ViewUserAction();
 		MenuItem editUser = new EditUserAction();
@@ -60,6 +61,7 @@ public class Application  {
 		MenuItem deleteuser = new DeleteUserAction();
 		MenuItem deleteoption = new DeleteOptionAction();
 		MenuItem deleteorder = new DeleteOrderAction();
+		MenuItem orderview = new ViewOrderAction();
 		
 
 		BackAction back = new BackAction("0", "Back");
@@ -88,6 +90,7 @@ public class Application  {
 		orderMenu.addItem(viewoption);
 		orderMenu.addItem(leftToPay);
 		orderMenu.addItem(payStatus);
+		orderMenu.addItem(orderview);
 		orderMenu.addItem(back);
 		orderMenu.setBackAction(back);
 		

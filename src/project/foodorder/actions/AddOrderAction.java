@@ -2,6 +2,7 @@ package project.foodorder.actions;
 
 import project.core.keyboard.Keyboard;
 
+
 import project.core.menu.MenuItem;
 import project.foodorder.AplicationSession;
 import project.foodorder.model.AvailableOption;
@@ -22,7 +23,7 @@ public class AddOrderAction extends MenuItem {
 		DataBase db = AplicationSession.getInstance().getDataBase();
 		String user = keyboard.getString("User Name: ");
 		String option = keyboard.getString("Option ID: ");
-		boolean notpaid = false;
+		
 		
 		User username = db.getReadingByName(user);
 		if(username == null) {
@@ -36,10 +37,8 @@ public class AddOrderAction extends MenuItem {
 		 }
 		AvailableOption option1 = db.getReadingByOptionID(option);
 		User user1 = db.getReadingByName(user);
-		System.out.println(user1 + "   Order: " + option1 + "Paid: " + notpaid);
-//		
 		
-		Order order = new Order(user1, option1, notpaid);
+		Order order = new Order(user1, option1, false, 0);
 		AplicationSession.getInstance().getDataBase().addOrder(order);
 	
 

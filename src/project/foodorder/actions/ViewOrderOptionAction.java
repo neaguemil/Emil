@@ -16,7 +16,6 @@ public class ViewOrderOptionAction extends MenuItem{
 		for(AvailableOption option : database.getOption()) {
 			System.out.println("------------------------------------------------------------------------------------------------------------");
 			System.out.println(option);
-			System.out.println("-------------------------------------------------------------------------------------------------------------");
 		}
 	}
 

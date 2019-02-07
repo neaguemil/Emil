@@ -17,8 +17,8 @@ public class EditOrderOptionAction extends MenuItem {
 	public void doAction() {
 		DataBase db = AplicationSession.getInstance().getDataBase();
 		String id = keyboard.getString("ID: ");
-		AvailableOption readoption = db.getReadingByOptionID(id);
-		if(readoption == null) {
+		AvailableOption option = db.getReadingByOptionID(id);
+		if(option == null) {
 			System.out.println("Order Option does not exist !!");
 			return;
 		}
