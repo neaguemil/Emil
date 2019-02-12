@@ -15,8 +15,8 @@ public class AddUserAction extends MenuItem {
 	@Override
 	public void doAction() {
 		String name = keyboard.getString("New User Name: ");
-		User readuser = new User(name);
-		AplicationSession.getInstance().getDataBase().addUser(readuser);
+		User user = new User(name);
+		AplicationSession.getInstance().getDataBase().addUser(user);
 	}
 
 }
