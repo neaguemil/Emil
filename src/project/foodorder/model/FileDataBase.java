@@ -139,16 +139,29 @@ public class FileDataBase implements DataBase, Serializable {
 			}
 		
 	}
+		Serializer serializer = AplicationSession.getInstance().getSerialize();
+		serializer.save(this);
 	}
 
 	@Override
-	public void editOrderStatus(String orderName, boolean status, double money) {
-		Order order = getOrderByName(orderName);
+	public void editOrderStatus(String name, String status, double money) {
+		Order order = getOrderByName(name);
 		order.edit(status, money);
 		Serializer serializer = AplicationSession.getInstance().getSerialize();
 		serializer.save(this);
 		
 		
+	}
+
+	@Override
+	public Order getOrderByUser(User name) {
+		for (Order order : orders) {
+			if (order.equals(order)) {
+				return order;
+			}
+			
+		}
+		return null;
 	}
 
 }

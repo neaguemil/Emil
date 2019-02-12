@@ -23,7 +23,7 @@ public class EditOrderOptionAction extends MenuItem {
 			return;
 		}
 		 String details = keyboard.getString("New Details: ");
-		 double price = keyboard.getInt("New Price: ");
+		 double price = keyboard.getDouble("New Price: ");
 		 db.editOrderOption(id, details, price);
 	}
 }

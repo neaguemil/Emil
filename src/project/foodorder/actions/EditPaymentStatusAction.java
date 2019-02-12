@@ -18,18 +18,21 @@ public class EditPaymentStatusAction extends MenuItem {
 	@Override
 	public void doAction() {
 		DataBase db = AplicationSession.getInstance().getDataBase();
-		String name = keyboard.getString("Order Name: ");
+		String name = keyboard.getString("User Name: ");
 		Order order = db.getOrderByName(name);
 		
 		if(order == null) {
 			System.out.println("Order does not exist !!");
 			return;
 		}
-		 boolean status = keyboard.getBoolean("New Status: ");
-		 if(status = true) {
+		String status = keyboard.getString("New Status: ");
+		 if(status.equals("Paid")) {
 		 double money = keyboard.getDouble("Money: ");
 		 db.editOrderStatus(name, status, money);
 	}
+		 else {
+			 System.out.println("------------Type Paid if user give u money------------");
+		 }
 	}
 	
 

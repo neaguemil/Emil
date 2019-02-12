@@ -30,7 +30,11 @@ public interface DataBase {
 	void deleteOrder(String name);
 	void addOrder(Order order);
 	Order getOrderByName(String name); 
-	void editOrderStatus(String orderName, boolean status, double money);
+	void editOrderStatus(String name, String status, double money);
+	
+	Order getOrderByUser(User name);
+
+	
 
 
 

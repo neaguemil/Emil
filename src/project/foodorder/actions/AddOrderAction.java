@@ -38,7 +38,7 @@ public class AddOrderAction extends MenuItem {
 		AvailableOption option1 = db.getReadingByOptionID(option);
 		User user1 = db.getReadingByName(user);
 		
-		Order order = new Order(user1, option1, false, 0);
+		Order order = new Order(user1, option1, 0);
 		AplicationSession.getInstance().getDataBase().addOrder(order);
 	
 
