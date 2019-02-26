@@ -32,7 +32,7 @@ public interface DataBase {
 	Order getOrderByName(String name); 
 	void editOrderStatus(String name, String status, double money);
 	
-	Order getOrderByUser(User name);
+	List<Order> getOrderByUser(String user);
 
 	
 

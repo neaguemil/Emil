@@ -128,6 +128,9 @@ public class FileDataBase implements DataBase, Serializable {
 	}
 		return null;
 	}
+	
+
+	
 
 	@Override
 	public void deleteOrder(String name) {
@@ -153,13 +156,13 @@ public class FileDataBase implements DataBase, Serializable {
 		
 	}
 
+	
 	@Override
-	public Order getOrderByUser(User name) {
+	public List<Order> getOrderByUser(String user) {
 		for (Order order : orders) {
-			if (order.equals(order)) {
-				return order;
-			}
-			
+			if (order.hasOrderName(user)) {
+				return orders ;		
+			}			
 		}
 		return null;
 	}

@@ -18,6 +18,7 @@ public class ViewOrderAction extends MenuItem {
 		DataBase database = AplicationSession.getInstance().getDataBase();
 		for(Order order : database.getOrder()) {
 			System.out.println(order);
+			
 	
 	}
 

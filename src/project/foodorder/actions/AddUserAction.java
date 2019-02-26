@@ -3,6 +3,7 @@ package project.foodorder.actions;
 import project.core.keyboard.Keyboard;
 import project.core.menu.MenuItem;
 import project.foodorder.AplicationSession;
+import project.foodorder.model.DataBase;
 import project.foodorder.model.User;
 
 public class AddUserAction extends MenuItem {
